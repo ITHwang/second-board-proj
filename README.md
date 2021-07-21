@@ -14,12 +14,14 @@
 
 <table>
 	<tr>
-		<td><img src="readme_img/tomcat.png" width="300px" height="300px"></td>
-		<td><img src="readme_img/html_css_js.png" width="300px" height="300px"></td>
-		<td><img src="readme_img/oracledb.png" width="300px" height="300px"></td>
-		<td><img src="readme_img/spring.png" width="300px" height="300px"></td>
-		<td><img src="readme_img/tiles.jpg" width="300px" height="300px"></td>
-		<td><img src="readme_img/bootstrap.png" width="300px" height="300px"></td>
+		<td><img src="readme_img/tomcat.png" width="150px" height="150px"></td>
+		<td><img src="readme_img/html_css_js.png" width="150px" height="150px"></td>
+		<td><img src="readme_img/oracledb.png" width="150px" height="150px"></td>
+	</tr>
+	<tr>
+		<td><img src="readme_img/spring.png" width="150px" height="150px"></td>
+		<td><img src="readme_img/tiles.jpg" width="150px" height="150px"></td>
+		<td><img src="readme_img/bootstrap.png" width="150px" height="150px"></td>
 	</tr>
 </table>
 
