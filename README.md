@@ -87,45 +87,41 @@
 
 ---
 
-| Table 명 | member    |          |              |          |         |                 |     |     |     |
-| -------- | --------- | -------- | ------------ | -------- | ------- | --------------- | --- | --- | --- |
-| No       | Column 명 | 한글명   | 자료형       | NULL     | key     | 비 고           |     |     |     |
-| 1        | ID        | 아이디   | VARCHAR2(10) | NOT NULL | PRIMARY |                 |     |     |     |
-| 2        | pwd       | 비밀번호 | VARCHAR2(10) | NOT NULL |         |                 |     |     |     |
-| 3        | name      | 이름     | VARCHAR2(50) | NOT NULL |         |                 |     |     |     |
-| 4        | email     | 이메일   | VARCHAR2(50) | NOT NULL |         |                 |     |     |     |
-| 5        | joinDate  | 가입일자 | DATE         | NOT NULL |         | DEFAULT sysdate |     |     |     |
-|          |           |          |              |          |         |                 |     |     |     |
+| Table 명 | member    |          |              |          |         |                 |
+| -------- | --------- | -------- | ------------ | -------- | ------- | --------------- |
+| No       | Column 명 | 한글명   | 자료형       | NULL     | key     | 비 고           |
+| 1        | ID        | 아이디   | VARCHAR2(10) | NOT NULL | PRIMARY |                 |
+| 2        | pwd       | 비밀번호 | VARCHAR2(10) | NOT NULL |         |                 |
+| 3        | name      | 이름     | VARCHAR2(50) | NOT NULL |         |                 |
+| 4        | email     | 이메일   | VARCHAR2(50) | NOT NULL |         |                 |
+| 5        | joinDate  | 가입일자 | DATE         | NOT NULL |         | DEFAULT sysdate |
 
-| Table 명 | board         |                  |                |          |         |                 |     |     |     |
-| -------- | ------------- | ---------------- | -------------- | -------- | ------- | --------------- | --- | --- | --- |
-| No       | Column 명     | 한글명           | 자료형         | NULL     | key     | 비 고           |     |     |     |
-| 1        | articleNO     | 글 번호          | NUMBER         | NOT NULL | PRIMARY |                 |     |     |     |
-| 2        | title         | 글 제목          | VARCHAR2(500)  | NOT NULL |         |                 |     |     |     |
-| 3        | content       | 글 내용          | VARCHAR2(4000) | NOT NULL |         |                 |     |     |     |
-| 4        | imageFileName | 이미지 파일 이름 | VARCHAR2(100)  | NULL     |         |                 |     |     |     |
-| 5        | writeDate     | 작성일           | DATE           | NOT NULL |         | DEFAULT sysdate |     |     |     |
-| 6        | ID            | 아이디           | VARCHAR2(10)   | NOT NULL | FOREIGN |                 |     |     |     |
-|          |               |                  |                |          |         |                 |     |     |     |
+| Table 명 | board         |                  |                |          |         |                 |
+| -------- | ------------- | ---------------- | -------------- | -------- | ------- | --------------- |
+| No       | Column 명     | 한글명           | 자료형         | NULL     | key     | 비 고           |
+| 1        | articleNO     | 글 번호          | NUMBER         | NOT NULL | PRIMARY |                 |
+| 2        | title         | 글 제목          | VARCHAR2(500)  | NOT NULL |         |                 |
+| 3        | content       | 글 내용          | VARCHAR2(4000) | NOT NULL |         |                 |
+| 4        | imageFileName | 이미지 파일 이름 | VARCHAR2(100)  | NULL     |         |                 |
+| 5        | writeDate     | 작성일           | DATE           | NOT NULL |         | DEFAULT sysdate |
+| 6        | ID            | 아이디           | VARCHAR2(10)   | NOT NULL | FOREIGN |                 |
 
-| Table 명 | comments  |           |                |          |         |                 |     |     |     |
-| -------- | --------- | --------- | -------------- | -------- | ------- | --------------- | --- | --- | --- |
-| No       | Column 명 | 한글명    | 자료형         | NULL     | key     | 비 고           |     |     |     |
-| 1        | commentNO | 댓글 번호 | NUMBER(10)     | NOT NULL | PRIMARY |                 |     |     |     |
-| 2        | content   | 댓글 내용 | VARCHAR2(4000) | NOT NULL |         |                 |     |     |     |
-| 3        | writeDate | 작성일    | DATE           | NULL     |         | DEFAULT sysdate |     |     |     |
-| 4        | articleNO | 글 번호   | NUMBER         | NOT NULL | FOREIGN |                 |     |     |     |
-| 5        | ID        | 아이디    | VARCHAR2(10)   | NOT NULL | FOREIGN |                 |     |     |     |
-|          |           |           |                |          |         |                 |     |     |     |
+| Table 명 | comments  |           |                |          |         |                 |
+| -------- | --------- | --------- | -------------- | -------- | ------- | --------------- |
+| No       | Column 명 | 한글명    | 자료형         | NULL     | key     | 비 고           |
+| 1        | commentNO | 댓글 번호 | NUMBER(10)     | NOT NULL | PRIMARY |                 |
+| 2        | content   | 댓글 내용 | VARCHAR2(4000) | NOT NULL |         |                 |
+| 3        | writeDate | 작성일    | DATE           | NULL     |         | DEFAULT sysdate |
+| 4        | articleNO | 글 번호   | NUMBER         | NOT NULL | FOREIGN |                 |
+| 5        | ID        | 아이디    | VARCHAR2(10)   | NOT NULL | FOREIGN |                 |
 
-| Table 명 | imageFile     |                  |              |          |         |                 |     |     |     |
-| -------- | ------------- | ---------------- | ------------ | -------- | ------- | --------------- | --- | --- | --- |
-| No       | Column 명     | 한글명           | 자료형       | NULL     | key     | 비 고           |     |     |     |
-| 1        | imageFileNO   | 이미지 파일 번호 | NUMBER(10)   | NOT NULL | PRIMARY |                 |     |     |     |
-| 2        | imageFileName | 이미지 파일 이름 | VARCHAR2(50) | NOT NULL |         |                 |     |     |     |
-| 3        | regDate       | 이미지 등록 날짜 | DATE         | NULL     |         | DEFAULT sysdate |     |     |     |
-| 4        | articleNO     | 글 번호          | NUMBER       | NOT NULL | FOREIGN |                 |     |     |     |
-|          |               |                  |              |          |         |                 |     |     |     |
+| Table 명 | imageFile     |                  |              |          |         |                 |
+| -------- | ------------- | ---------------- | ------------ | -------- | ------- | --------------- |
+| No       | Column 명     | 한글명           | 자료형       | NULL     | key     | 비 고           |
+| 1        | imageFileNO   | 이미지 파일 번호 | NUMBER(10)   | NOT NULL | PRIMARY |                 |
+| 2        | imageFileName | 이미지 파일 이름 | VARCHAR2(50) | NOT NULL |         |                 |
+| 3        | regDate       | 이미지 등록 날짜 | DATE         | NULL     |         | DEFAULT sysdate |
+| 4        | articleNO     | 글 번호          | NUMBER       | NOT NULL | FOREIGN |                 |
 
 <img src="readme_img/sql_init_erd.png">
 
