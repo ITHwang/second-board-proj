@@ -23,6 +23,9 @@
 		<td><img src="readme_img/tiles.jpg" width="150px" height="150px"></td>
 		<td><img src="readme_img/bootstrap.png" width="150px" height="150px"></td>
 	</tr>
+	<tr>
+		<td><img src="readme_img/mybatis.jpg" width="150px" height="150px"></td>
+	</tr>
 </table>
 
 ## Requirements
