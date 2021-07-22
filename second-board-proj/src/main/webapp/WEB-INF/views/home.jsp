@@ -13,7 +13,22 @@
 <head>
   <meta charset="UTF-8">
   <title>메인 페이지</title>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
+<c:choose>
+	<c:when test="${result=='logouted' }">
+	  <script>
+	    window.onload=function(){
+	      alert("로그아웃 되었습니다.");
+	    }
+	  </script>
+	</c:when>
+	<c:when test="${result=='added' }">
+	  <script>
+	    window.onload=function(){
+	      alert("회원이 되신 것을 축하드립니다!! 로그인 후 이용해주세요.");
+	    }
+	  </script>
+	</c:when>
+</c:choose>  
 </head>
 <body>
    <h1>메인 페이지입니다!!</h1>
