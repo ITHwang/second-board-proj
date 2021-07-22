@@ -23,6 +23,9 @@
 		<td><img src="readme_img/tiles.jpg" width="150px" height="150px"></td>
 		<td><img src="readme_img/bootstrap.png" width="150px" height="150px"></td>
 	</tr>
+	<tr>
+		<td><img src="readme_img/mybatis.jpg" width="150px" height="150px"></td>
+	</tr>
 </table>
 
 ## Requirements
@@ -53,6 +56,7 @@
     - 게시판 활동
 
         - 모든 글 읽기 또는 삭제 가능
+        - 모든 댓글 읽기 또는 삭제 가능
 
     - 회원 관리
 
