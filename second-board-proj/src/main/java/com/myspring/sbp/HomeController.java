@@ -15,7 +15,7 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@RequestMapping(value = { "/", "/home.do" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/home.do" }, method = { RequestMethod.GET, RequestMethod.POST })
 	public String home(HttpServletRequest request, HttpServletResponse response, Model model) {
 		String result = request.getParameter("result");
 		if (result == null) {
@@ -24,6 +24,8 @@ public class HomeController {
 			model.addAttribute("result", "logouted");
 		} else if (result.equals("added")) {
 			model.addAttribute("result", "added");
+		} else if (result.equals("deleted")) {
+			model.addAttribute("result", "deleted");
 		}
 		return "home";
 	}

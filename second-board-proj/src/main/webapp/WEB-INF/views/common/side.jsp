@@ -33,11 +33,41 @@
 <body>
 	<h1 id="menu-title">사이드 메뉴</h1><br>
 	<h2>
-	    <a href="${contextPath }/board/listArticles.do"  class="no-underline">게시판</a><br><br>
-		<a href="${contextPath }/member/listMembers.do" class="no-underline">마이페이지</a><br><br>
-        <c:if test="${isLogOn == true  && member != null && member.id == 'admin'}">
-			<a href="${contextPath }/member/listMembers.do" class="no-underline">회원 관리</a><br><br>
-        </c:if>
+	    <a id="listArticles" href="${contextPath }/board/listArticles.do"  class="no-underline">게시판</a><br><br>
+		<c:choose>
+			<c:when test="${isLogOn == true  && member != null && member.id == 'admin'}">
+				<a href="${contextPath }/member/listMembers.do" class="no-underline">회원 관리</a><br><br>
+			</c:when>
+			<c:otherwise>
+				<a id="mypage" href="${contextPath }/member/mypage.do" class="no-underline">마이페이지</a><br><br>
+			</c:otherwise>
+		</c:choose>
     </h2>
+<script>
+		//메인에서 게시판이나 마이페이지 클릭 시 로그인 여부 확인 후 리다이렉션
+		function fn_check_login(isLogOn, target){
+		  if(isLogOn != '' && isLogOn != 'false'){
+			target.setAttribute("href", target.href);
+		  }else{
+			  alert("로그인 후 가능합니다.")
+			  if (target.getAttribute("href") == "${contextPath}/board/listArticles.do"){
+			      target.setAttribute("href", '${contextPath}/member/loginForm.do?action=/board/listArticles.do');
+			  }
+			  else if (target.getAttribute("href") == "${contextPath }/member/mypage.do"){
+			      target.setAttribute("href", '${contextPath}/member/loginForm.do?action=/member/mypage.do');
+			  }
+		  }
+		}
+		
+		var listArticles = document.getElementById("listArticles");
+		listArticles.addEventListener('click', function(event){
+			fn_check_login("${isLogOn}", event.target);
+		});
+		
+		var mypage = document.getElementById("mypage");
+		mypage.addEventListener('click', function(event){
+			fn_check_login("${isLogOn}", event.target);
+		});
+</script>
 </body>
 </html>

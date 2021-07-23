@@ -67,14 +67,76 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	@Override
-	@RequestMapping(value = "/member/removeMember.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/updateMember.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView updateMember(@ModelAttribute("member") MemberVO member, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("html/text;charset=utf-8");
+
+		int result = 0;
+		result = memberService.updateMember(member);
+		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		mav.addObject("result", "updated");
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value = "/member/updateMypage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView updateMypage(@ModelAttribute("member") MemberVO member, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("html/text;charset=utf-8");
+
+		int result = 0;
+		result = memberService.updateMember(member);
+
+		// 세션에 저장되어 있는 회원 정보 수정
+		HttpSession session = request.getSession();
+		session.removeAttribute("member");
+		session.setAttribute("member", member);
+
+		ModelAndView mav = new ModelAndView("redirect:/member/mypage.do");
+		mav.addObject("result", "updated");
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value = "/member/mypage.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String mypage(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("html/text;charset=utf-8");
+
+		String viewName = (String) request.getAttribute("viewName");
+		String result = request.getParameter("result");
+		if (result == null) {
+			return viewName;
+		} else if (result.equals("updated")) {
+			model.addAttribute("result", "updated");
+		}
+		return viewName;
+	}
+
+	@Override
+	@RequestMapping(value = "/member/removeMember.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView removeMember(@RequestParam("id") String id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		memberService.removeMember(id);
-		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
-		mav.addObject("result", "deleted");
-		return mav;
+
+		HttpSession session = request.getSession();
+		String sid = ((MemberVO) session.getAttribute("member")).getId();
+
+		if (sid.equals("admin")) {
+			ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+			mav.addObject("result", "deleted");
+			return mav;
+		} else {
+			session.removeAttribute("member");
+			session.removeAttribute("isLogOn");
+			ModelAndView mav = new ModelAndView("redirect:/home.do");
+			mav.addObject("result", "deleted");
+			return mav;
+		}
 	}
 
 	@Override
@@ -121,20 +183,6 @@ public class MemberControllerImpl implements MemberController {
 		session.removeAttribute("isLogOn");
 		model.addAttribute("result", "logouted");
 		return "redirect:/home.do";
-	}
-
-	@Override
-	@RequestMapping(value = "/member/updateMember.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView updateMember(@ModelAttribute("member") MemberVO member, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("html/text;charset=utf-8");
-
-		int result = 0;
-		result = memberService.updateMember(member);
-		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
-		mav.addObject("result", "updated");
-		return mav;
 	}
 
 	@Override

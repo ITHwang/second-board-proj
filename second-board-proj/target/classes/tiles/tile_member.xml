@@ -31,9 +31,9 @@
       <put-attribute name="body" value="/WEB-INF/views/member/modMemberForm.jsp" />
    </definition>
    
-   <definition name="/member/viewDetail" extends="baseLayout">
-      <put-attribute name="title" value="회원상세창" />
-      <put-attribute name="body" value="/WEB-INF/views/member/viewDetail.jsp" />
+   <definition name="/member/mypage" extends="baseLayout">
+      <put-attribute name="title" value="마이페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/member/mypage.jsp" />
    </definition>
    
 </tiles-definitions>

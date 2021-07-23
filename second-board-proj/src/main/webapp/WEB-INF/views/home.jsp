@@ -28,6 +28,13 @@
 	    }
 	  </script>
 	</c:when>
+	<c:when test="${result=='deleted' }">
+	  <script>
+	    window.onload=function(){
+	      alert("탈퇴 완료");
+	    }
+	  </script>
+	</c:when>
 </c:choose>  
 </head>
 <body>

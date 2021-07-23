@@ -23,6 +23,11 @@ public interface MemberController {
 	public ModelAndView updateMember(@ModelAttribute("member") MemberVO member, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 
+	public ModelAndView updateMypage(@ModelAttribute("member") MemberVO member, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
+	public String mypage(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception;
+
 	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 
