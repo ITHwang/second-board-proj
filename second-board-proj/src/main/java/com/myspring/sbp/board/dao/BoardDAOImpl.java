@@ -55,6 +55,13 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public void updateImageFileList(List imageFileList) throws DataAccessException {
+		for (int i = 0; i < imageFileList.size(); i++) {
+			sqlSession.update("mapper.board.updateImageFileName", (ImageVO) imageFileList.get(i));
+		}
+	}
+
+	@Override
 	public void deleteArticle(int articleNO) throws DataAccessException {
 		sqlSession.delete("mapper.board.deleteArticle", articleNO);
 

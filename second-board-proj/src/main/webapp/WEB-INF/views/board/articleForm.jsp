@@ -61,8 +61,11 @@ request.setCharacterEncoding("UTF-8");
             
             <tr>
                 <td class="table table-success" width="150px" align="center" >파일 첨부</td>
-				<td><div id="d_file"><input type="file" name="imageFileName"
-					onchange="readURL(this);" /></div></td>
+				<td>
+					<div id="d_file">
+						<input type="file" name="file0" onchange="readURL(this);" />
+					</div>
+				</td>
 
 				<td align="left"><input type="button" class="btn btn-success cls1" value="파일 추가"
 					onClick="fn_addFile()" /></td>

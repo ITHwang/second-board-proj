@@ -22,4 +22,6 @@ public interface BoardDAO {
 
 	public List selectImageFileList(int articleNO) throws DataAccessException;
 
+	public void updateImageFileList(List imageFileList) throws DataAccessException;
+
 }

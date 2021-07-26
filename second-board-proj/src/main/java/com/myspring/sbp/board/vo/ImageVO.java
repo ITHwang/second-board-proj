@@ -9,6 +9,7 @@ public class ImageVO {
 	private String imageFileName;
 	private Date regDate;
 	private int articleNO;
+	private String tagName;
 
 	public int getImageFileNO() {
 		return imageFileNO;
@@ -46,6 +47,14 @@ public class ImageVO {
 
 	public void setArticleNO(int articleNO) {
 		this.articleNO = articleNO;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 
 }

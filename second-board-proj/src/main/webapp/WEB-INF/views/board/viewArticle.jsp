@@ -26,6 +26,34 @@ request.setCharacterEncoding("UTF-8");
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
 
 	<script src="${contextPath}/resources/js/board/viewArticle.js"></script>
+	<script>
+		function fn_enable() {
+			document.getElementById("title").style.display = "none";
+			document.getElementById("i_title").setAttribute("type", "text");
+			document.getElementById("i_content").readOnly = false;
+			document.getElementById("tr_btn_modify").style.display = "table-row";
+			document.getElementById("tr_btn").style.display = "none";
+			
+			var elements = document.getElementsByClassName("imageList");
+			for (var elem of elements){
+				elem.disabled = false;
+			}
+		}
+
+		function fn_disable(){
+			document.getElementById("title").style.display = "inline";
+			document.getElementById("i_title").setAttribute("type", "hidden");
+			document.getElementById("i_content").readOnly = true;
+			document.getElementById("tr_btn_modify").style.display = "none";
+			document.getElementById("tr_btn").style.display = "table-row";
+			
+			
+			var elements = document.getElementsByClassName("imageList");
+			for (var elem of elements){
+				elem.disabled = true;
+			}
+		}
+	</script>
 	
     <style>
         #tr_btn_modify {
@@ -55,17 +83,20 @@ request.setCharacterEncoding("UTF-8");
             <tr>
                 <td class="table-success" width="150" align="center">
                     글번호</td>
-                <td><span>${article.articleNO }</span> <input type="hidden" name="articleNO" value="${article.articleNO}" /></td>
+                <td><span>${realNO }</span>
+                	<input type="hidden" name="articleNO" value="${article.articleNO}" />
+                	<input type="hidden" name="realNO" value="${realNO}" />
+                </td>
             </tr>
             
             <tr>
-                <td class="table-success" width="150" align="center">작성자 아이디</td>
+                <td class="table-success" width="150" name="writer" align="center">작성자 아이디</td>
                 <td><span>${article.id }</span></td>
             </tr>
             
             <tr>
                 <td class="table-success" width="150" align="center" >제목</td>
-                <td><span id="title">${article.title }</span> <input type="hidden" id="i_title" value="${article.title }" /></td>
+                <td><span id="title">${article.title }</span> <input type="hidden" name="title" id="i_title" value="${article.title }" /></td>
             </tr>
             
             <tr>
@@ -77,13 +108,14 @@ request.setCharacterEncoding("UTF-8");
                 <c:forEach var="item" items="${imageFileList}" varStatus="status">
                     <tr>
                         <td class="table-success" width="150" align="center"  rowspan="2">이미지${status.count }</td>
-                        <td><input type="hidden" name="originalFileName" value="${item.imageFileName }" /> <img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${item.imageFileName}" id="preview" /><br></td>
+                        <td><img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${item.imageFileName}" /><br></td>
                     </tr>
                     <tr>
-                        <td><input type="file" name="imageFileName " id="i_imageFileName" disabled onchange="readURL(this);" /></td>
+                        <td><input type="file" class="imageList" name="file${status.count - 1}" disabled onchange="readURL(this);" /></td>
                     </tr>
                 </c:forEach>
             </c:if>
+
 
             <tr>
                 <td class="table-success" width="150" align="center" >등록일자</td>

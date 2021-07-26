@@ -3,6 +3,7 @@
     isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%
   request.setCharacterEncoding("UTF-8");
@@ -72,11 +73,11 @@
 			  <c:otherwise>
 					 <c:forEach  var="article" items="${articlesList }" varStatus="articleNum" >
 						 <tr align="center">
-						<td width="5%">${article.articleNO}</td>
+						<td width="5%">${fn:length(articlesList) - articleNum.count + 1}</td>
 						<td width="10%">${article.id }</td>
 						<td align='left'  width="35%">
 						  <span style="padding-right:30px"></span>
-						  <a class='cls1' href="${contextPath}/board/viewArticle.do?articleNO=${article.articleNO}">${article.title }</a>
+						  <a class='cls1' href="${contextPath}/board/viewArticle.do?articleNO=${article.articleNO}&realNO=${fn:length(articlesList) - articleNum.count + 1}">${article.title }</a>
 						  </td>
 						  <td  width="10%">${article.writeDate}</td> 
 						</tr>

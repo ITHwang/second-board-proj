@@ -4,6 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.board">
+
 <resultMap id="articlesResult" type="articleVO">
     <result property="articleNO" column="articleNO" />
     <result property="title" column="title" />
@@ -16,6 +17,7 @@
 	  <result property="imageFileNO" column="imageFileNO" />
 	  <result property="articleNO" column="articleNO" />
 	  <result property="imageFileName" column="imageFileName" />
+	  <result property="tagName" column="tagName" />
  </resultMap>
 
   <select id="selectAllArticlesList" resultMap="articlesResult"   >
@@ -49,14 +51,17 @@
   </select>
   
   <update id="updateArticle"  parameterType="java.util.Map">
+    	<![CDATA[
 			update board
-			set title=#{title},	 
-			content=#{content}
-			 <if test="imageFileName!='' and imageFileName!=null">
-			  , imageFileName=#{imageFileName}
-			</if>
-			where articleNO=#{articleNO}
+			set title=#{title}, content=#{content} where articleNO=#{articleNO}
+    	]]>
 	</update>
+	  <update id="updateImageFileName"  parameterType="imageVO">
+	  			update imageFile
+	  			set imageFileName = #{imageFileName},
+	  			regDate = sysdate
+	  			where tagName = #{tagName}
+		</update>
 	
 	<delete id="deleteArticle"  parameterType="int">
     <![CDATA[
@@ -73,12 +78,11 @@
     ]]>      
   </insert>
 
- 
    <insert id="insertNewImage"  parameterType="java.util.Map">
     <foreach item="item"  collection="list"   open="INSERT ALL" 
                   separator=" " close="SELECT * FROM DUAL" >
-      INTO imageFile(imageFileNO, imageFileName, articleNO, regDate)
-      VALUES (#{item.imageFileNO}, #{item.imageFileName}, #{item.articleNO}, sysdate)
+      INTO imageFile(imageFileNO, imageFileName, articleNO, tagName, regDate)
+      VALUES (#{item.imageFileNO}, #{item.imageFileName}, #{item.articleNO}, #{item.tagName}, sysdate)
     </foreach>
   </insert>
  
